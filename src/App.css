@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+.btn-Send {
+  padding: 5px 5px;
+  margin: 5px 5px;
+  color: #4c84ff;
+}
+.btn-Send:active .btn-Send:focus {
+  outline: 0;
+}

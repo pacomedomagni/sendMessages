@@ -30,7 +30,7 @@ export default function SendTags () {
 
         if(rawSendType ==='first name' || rawSendType === 'firstname') return 'firstname'
         if(rawSendType ==='last name' || rawSendType === 'lastname') return 'lastname'          
-        if(rawSendType === 'organization' || rawSendType === 'organizationId') return 'organiationId'    
+        if(rawSendType === 'organization' || rawSendType === 'organizationid') return 'organiationid'    
         if(rawSendType === 'tag' || rawSendType === 'tags')  return 'tags'
         
         return
@@ -101,7 +101,7 @@ export default function SendTags () {
                         <input type="text" name="qualifier" onChange={handleChange}/>
                     </div>
                 </label>
-                <input type="submit" value="Send Messages" />
+                <input className ='btn-Send' type="submit" value="Send Messages" />
             </form>
             { sent && <div>{expression} {recipients}</div> }
         </div>
