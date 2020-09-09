@@ -28,9 +28,9 @@ export default function SendTags () {
 /** checking the validity of sendtype */
     const validateSendType = (rawSendType)=>{
 
-        if(rawSendType ==='first name' || rawSendType === 'firstname') return 'firstname'
-        if(rawSendType ==='last name' || rawSendType === 'lastname') return 'lastname'          
-        if(rawSendType === 'organization' || rawSendType === 'organizationid') return 'organiationid'    
+        if(rawSendType ==='first name' || rawSendType === 'firstname') return 'firstName'
+        if(rawSendType ==='last name' || rawSendType === 'lastname') return 'lastName'          
+        if(rawSendType === 'organization' || rawSendType === 'organizationid') return 'organizationId'    
         if(rawSendType === 'tag' || rawSendType === 'tags')  return 'tags'
         
         return
@@ -70,13 +70,14 @@ export default function SendTags () {
 
         fetch(`https://sheetdb.io/api/v1/aka2sv6jd00dh/${params}`).then(response => response.json())
         .then(data => {
-            /** convert raw data into String and format properly  */
-            let StringValue = ''
-            data.forEach(({firstName, lastName}) => StringValue+= firstName+' '+lastName+', ')
-            if(data.length < 1){
+           /** check if any data is return */          
+            if(!Array.isArray(data) || !data.length) {
                 updateExpression('')
                 updateRecipients('No user was found!')
-            }else{              
+            }else{  
+        /** convert raw data into String and format properly  */
+                let StringValue = ''
+                data.forEach(({firstName, lastName}) => StringValue+= firstName+' '+lastName+', ')            
                 updateExpression('Sent To: ')
                 updateRecipients(StringValue.slice(0 ,-2))
             }
